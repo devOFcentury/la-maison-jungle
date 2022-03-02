@@ -22,6 +22,7 @@ function ShoppingList({ cart, updateCart}) {
 				...cartFilteredCurrentPlant,
 				{ name, price, amount: currentPlantAdded.amount + 1 }
 			])
+			
 
 			
 		} else {

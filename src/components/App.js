@@ -11,9 +11,11 @@ function App() {
 	const [cart, updateCart] = useState(savedCart ? JSON.parse(savedCart) : []);
 	useEffect(() => {
 		localStorage.setItem('cart',JSON.stringify(cart));
+		
 	}, [cart])
 
-	const [cancel, setCancel] = useState(cart);
+	const [cancelName, setCancelName] = useState({name : ''});
+	
 
 	return (
 		<div>
@@ -22,8 +24,8 @@ function App() {
 				<h1 className='lmj-title'>La maison jungle</h1>
 			</Banner>
 			<div className='lmj-layout-inner'>
-				<Cart cart={cart} updateCart={updateCart} cancel={cancel} setCancel={setCancel} />
-				<ShoppingList cart={cart} updateCart={updateCart} cancel={cancel} setCancel={setCancel} />
+				<Cart cart={cart} updateCart={updateCart} cancelName={cancelName} setCancelName={setCancelName} />
+				<ShoppingList cart={cart} updateCart={updateCart}  />
 			</div>
 			<Footer />
 		</div>

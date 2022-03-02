@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import '../styles/Cart.css'
 
-function Cart({ cart, updateCart }) {
+function Cart({ cart, updateCart, cancelName, setCancelName }) {
+	
 	const [isOpen, setIsOpen] = useState(true)
 	const items = Object.keys(cart);
+	
 	const total = items.reduce(
 		(acc, item) => acc + cart[item].amount * cart[item].price,
 		0
@@ -13,6 +15,11 @@ function Cart({ cart, updateCart }) {
 		document.title = `LMJ: ${total}€ d'achats`
 	}, [total])
 
+	function CancelItem(name) {
+		//alert(name + ' : ' + price + '$ * ' + amount);
+		setCancelName({...cancelName, name : name});
+		alert(cancelName.name);
+	}
 	
 
 	return isOpen ? (
@@ -30,7 +37,7 @@ function Cart({ cart, updateCart }) {
 						{cart.map(({ name, price, amount }, index) => (
 							<div key={`${name}-${index}`}>
 								{name} {price}€ x {amount}
-									
+								<button onClick={() => CancelItem(name, price, amount)}>annuler</button>	
 							</div>
 						))}
 					</ul>
